@@ -2,6 +2,8 @@
 
 A Sublime plugin to transform the selected hex color into a friendly SASS variable name.
 
+![demo](https://user-images.githubusercontent.com/2361579/44531065-3c49b900-a6c6-11e8-983c-bc7999d9a219.gif)
+
 ## Installation
 
 Download and drop the directory into Sublime's `packages` directory.

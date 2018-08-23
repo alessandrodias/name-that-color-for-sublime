@@ -1,6 +1,6 @@
 [
   {
-    "caption": "Name That Color: Name Selected Hex Color",
+    "caption": "Name That Color",
     "command": "name_that_color"
   }
 ]

@@ -17,4 +17,4 @@ Select a hex color and run the `Name That Color` from the command palette.
 
 Forked from: [Name-That-Color---Sublime-Plugin](https://github.com/mattfordham/Name-That-Color---Sublime-Plugin)
 
-Credit goes to [Chirag Mehta](http://chir.ag/projects/ntc/)
+Credit goes to [Chirag Mehta](http://chir.ag/projects/name-that-color/)

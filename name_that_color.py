@@ -18,29 +18,30 @@ class NameThatColorCommand(sublime_plugin.TextCommand):
     for selection in selections:
       selection_text = self.view.substr(selection)
       color_name = self.color_name(selection_text).lower().replace(" ", "-")
+      color_name = "$color-" + color_name + ": " + selection_text + ";"
       self.view.replace(edit, selection, color_name)
 
   def color_name(self, color):
     color = color.replace("#", "")
     color = color.upper()
-    
+
     if len(color) < 3 or len(color) > 6:
       return "Invalid Color"
     if len(color) % 3 == 0:
       color = "#" + color
     if len(color) == 4:
       color = "#" + color[1:2] + color[1:2] + color[2:3] + color[2:3] + color[3:4] + color[3:4]
-    
+
     rgb = self.rgb(color)
     r = rgb[0]
     g = rgb[1]
     b = rgb[2]
-    
+
     hsl = self.hsl(color)
     h = hsl[0]
     s = hsl[1]
     l = hsl[2]
-    
+
     ndf1 = 0
     ndf2 = 0
     ndf = 0
@@ -61,16 +62,15 @@ class NameThatColorCommand(sublime_plugin.TextCommand):
       if df < 0 or df > ndf:
         df = ndf
         cl = i
-      
-    if cl < 0:
-      return "Invalid Color" 
-    else: 
-      return self.color_names[cl][1]
 
+    if cl < 0:
+      return "Invalid Color"
+    else:
+      return self.color_names[cl][1]
 
   def hsl(self, color):
     rgb = self.rgb(color)
-    
+
     r = rgb[0] / 255
     g = rgb[1] / 255
     b = rgb[2] / 255
@@ -83,19 +83,19 @@ class NameThatColorCommand(sublime_plugin.TextCommand):
 
     if l > 0 and l < 1:
       s = delta / ((2 * l) if (l < 0.5) else (2 - 2 * l))
-    
+
     h = 0
 
     if delta > 0:
-      if (_max == r and _max != g): 
+      if (_max == r and _max != g):
         h += (g - b) / delta
       if (_max == g and _max != b):
         h += (2 + (b - r) / delta)
       if (_max == b and _max != r):
         h += (4 + (r - g) / delta)
-      
+
       h /= 6
-   
+
     return [round(h * 255), round(s * 255), round(l * 255)]
 
   def rgb(self, color):
